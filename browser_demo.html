@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monish Browser Demo</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #272727 0%, #0f0f0f 100%);
+      color: #f7f7f7;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .panel {
+      width: 95%;
+      max-width: 720px;
+      padding: 2rem;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .line {
+      margin: 0.75rem 0;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+    }
+    #message {
+      min-height: 3rem;
+      font-size: clamp(1.3rem, 2.2vw, 2.2rem);
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="line" style="font-size: clamp(1.5rem, 2.4vw, 2.5rem); font-weight: 700;">Monish Browser Demo</div>
+    <div class="line">Hello world</div>
+    <div class="line">hello</div>
+    <div class="line">this is my project - monish</div>
+    <div id="message"></div>
+    <button id="restartButton">Restart animation</button>
+  </div>
+
+  <script>
+    const message = "Monish is good developer";
+    const colors = ["#ff4d4d", "#ffcc33", "#66ff66", "#33ccff", "#6699ff", "#cc66ff"];
+    const output = document.getElementById("message");
+    const restartButton = document.getElementById("restartButton");
+
+    let index = 0;
+    function animate() {
+      if (index >= message.length) return;
+      const span = document.createElement("span");
+      span.textContent = message[index];
+      span.style.color = colors[index % colors.length];
+      output.appendChild(span);
+      index += 1;
+      setTimeout(animate, 80);
+    }
+
+    function resetAnimation() {
+      output.textContent = "";
+      index = 0;
+      animate();
+    }
+
+    restartButton.addEventListener("click", resetAnimation);
+    animate();
+  </script>
+</body>
+</html>
